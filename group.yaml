@@ -2,10 +2,12 @@ apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
   name: rhoai
+  title: RHOAI Team
   description: RHOAI Team
 spec:
   type: business-unit
   profile:
     displayName: RHOAI
     email: jstetina@redhat.com
-  members: [jstetina]
+  members:
+    - jstetina
