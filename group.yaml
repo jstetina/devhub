@@ -9,5 +9,4 @@ spec:
   profile:
     displayName: RHOAI
     email: jstetina@redhat.com
-  members:
-    - jstetina
+  members: [jstetina]
