@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: rhoai
+spec:
+  type: team
+  profile:
+    displayName: RHOAI
+  members:
+    - jstetina

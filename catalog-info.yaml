@@ -14,4 +14,4 @@ metadata:
 spec:
   type: service
   lifecycle: experimental
-  owner: jstetina 
+  owner: group:default/rhoai
