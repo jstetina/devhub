@@ -10,3 +10,5 @@ spec:
     email: jstetina@redhat.com
     picture: https://example.com/groups/bu-infrastructure.jpeg
   members: [jstetina]
+  children: []
+
