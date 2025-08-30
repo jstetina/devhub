@@ -1,0 +1,27 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: rhoai
+  title: Red Hat OpenShift AI
+  description: |
+    Red Hat OpenShift AI is a comprehensive AI/ML platform that provides
+    tools and services for data scientists and developers to build, deploy,
+    and manage AI applications at scale. Includes both downstream RHOAI
+    and upstream OpenDataHub components.
+  links:
+    - url: https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-ai
+      title: RHOAI Product Page
+      icon: web
+    - url: https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed
+      title: RHOAI Documentation
+      icon: docs
+    - url: https://opendatahub.io/
+      title: OpenDataHub Project
+      icon: web
+  tags:
+    - ai
+    - ml
+    - platform
+    - upstream-downstream
+spec:
+  owner: group:default/rhoai

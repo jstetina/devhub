@@ -26,7 +26,7 @@ metadata:
     - platform
     - upstream-downstream
 spec:
-  owner: group:default/rhoai-team
+  owner: group:default/rhoai
 
 ---
 # RHOAI System (Downstream)
@@ -44,7 +44,7 @@ metadata:
     - enterprise
     - supported
 spec:
-  owner: group:default/rhoai-team
+  owner: group:default/rhoai
   domain: rhoai
 
 ---
@@ -70,7 +70,7 @@ metadata:
     - open-source
     - community
 spec:
-  owner: group:default/odh-team
+  owner: group:default/rhoai
   domain: rhoai
 
 ---
@@ -85,7 +85,6 @@ metadata:
     components and handles installation, configuration, and updates
     for the downstream Red Hat OpenShift AI product.
   annotations:
-    # TODO: Replace with actual RHOAI operator repo URL
     github.com/project-slug: 'red-hat-data-services/rhods-operator'
     github.com/issues: 'true'
     github.com/pull-requests: 'true'
@@ -111,7 +110,6 @@ metadata:
     and tools for data scientists and administrators. Enterprise
     version with Red Hat branding and additional features.
   annotations:
-    # TODO: Replace with actual RHOAI dashboard repo URL
     github.com/project-slug: 'red-hat-data-services/odh-dashboard'
     github.com/issues: 'true'
     github.com/pull-requests: 'true'
@@ -166,7 +164,6 @@ metadata:
     Web-based dashboard providing unified access to OpenDataHub services
     and tools. The upstream dashboard that the RHOAI dashboard is based on.
   annotations:
-    # TODO: Replace with actual ODH dashboard repo URL
     github.com/project-slug: 'opendatahub-io/odh-dashboard'
     github.com/issues: 'true'
     github.com/pull-requests: 'true'
