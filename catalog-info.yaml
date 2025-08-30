@@ -10,7 +10,8 @@ metadata:
       icon: home
   annotations:
     github.com/project-slug: 'red-hat-data-services/kserve'
-    #jenkins.io/job-full-name: 'my-react-app-pipeline'
+    github.com/issues: 'true'
+    github.com/pull-requests: 'true'
 spec:
   type: service
   lifecycle: experimental
