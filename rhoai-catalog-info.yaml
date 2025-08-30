@@ -161,8 +161,6 @@ spec:
   lifecycle: production
   owner: group:default/rhoai
   system: codebase
-  dependsOn:
-    - component:downstream-codebase
 
 ---
 # RHOAI Dashboard
@@ -188,9 +186,6 @@ spec:
   lifecycle: production
   owner: group:default/rhoai
   system: codebase
-  dependsOn:
-    - component:downstream-codebase
-    - component:rhoai-operator
 
 ---
 # OpenDataHub Components (Part of Upstream Codebase)
@@ -220,8 +215,6 @@ spec:
   lifecycle: production
   owner: group:default/rhoai
   system: codebase
-  dependsOn:
-    - component:upstream-codebase
 
 ---
 # ODH Dashboard
@@ -250,9 +243,6 @@ spec:
   lifecycle: production
   owner: group:default/rhoai
   system: codebase
-  dependsOn:
-    - component:upstream-codebase
-    - component:odh-operator
 
 ---
 # Testing System Components
