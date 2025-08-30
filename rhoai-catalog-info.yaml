@@ -1,0 +1,187 @@
+---
+# RHOAI Domain - Top Level
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: rhoai
+  title: Red Hat OpenShift AI
+  description: |
+    Red Hat OpenShift AI is a comprehensive AI/ML platform that provides
+    tools and services for data scientists and developers to build, deploy,
+    and manage AI applications at scale. Includes both downstream RHOAI
+    and upstream OpenDataHub components.
+  links:
+    - url: https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-ai
+      title: RHOAI Product Page
+      icon: web
+    - url: https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed
+      title: RHOAI Documentation
+      icon: docs
+    - url: https://opendatahub.io/
+      title: OpenDataHub Project
+      icon: web
+  tags:
+    - ai
+    - ml
+    - platform
+    - upstream-downstream
+spec:
+  owner: group:default/rhoai-team
+
+---
+# RHOAI System (Downstream)
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: rhoai-downstream
+  title: Red Hat OpenShift AI (Downstream)
+  description: |
+    Red Hat's supported, enterprise-ready AI/ML platform based on
+    OpenDataHub. Includes additional enterprise features, support,
+    and Red Hat branding.
+  tags:
+    - downstream
+    - enterprise
+    - supported
+spec:
+  owner: group:default/rhoai-team
+  domain: rhoai
+
+---
+# OpenDataHub System (Upstream)
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: opendatahub-upstream
+  title: OpenDataHub (Upstream)
+  description: |
+    Open source AI/ML platform providing data science tools and
+    workflows on OpenShift and Kubernetes. The upstream project
+    that RHOAI is based on.
+  links:
+    - url: https://opendatahub.io/
+      title: OpenDataHub Website
+      icon: web
+    - url: https://github.com/opendatahub-io
+      title: OpenDataHub GitHub Organization
+      icon: github
+  tags:
+    - upstream
+    - open-source
+    - community
+spec:
+  owner: group:default/odh-team
+  domain: rhoai
+
+---
+# RHOAI Operator (Downstream)
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: rhoai-operator
+  title: RHOAI Operator
+  description: |
+    Kubernetes operator that manages the lifecycle of RHOAI
+    components and handles installation, configuration, and updates
+    for the downstream Red Hat OpenShift AI product.
+  annotations:
+    # TODO: Replace with actual RHOAI operator repo URL
+    github.com/project-slug: 'red-hat-data-services/rhods-operator'
+    github.com/issues: 'true'
+    github.com/pull-requests: 'true'
+  tags:
+    - operator
+    - downstream
+    - kubernetes
+spec:
+  type: service
+  lifecycle: production
+  owner: group:default/rhoai-team
+  system: rhoai-downstream
+
+---
+# RHOAI Dashboard (Downstream)
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: rhoai-dashboard
+  title: RHOAI Dashboard
+  description: |
+    Web-based dashboard providing unified access to RHOAI services
+    and tools for data scientists and administrators. Enterprise
+    version with Red Hat branding and additional features.
+  annotations:
+    # TODO: Replace with actual RHOAI dashboard repo URL
+    github.com/project-slug: 'red-hat-data-services/odh-dashboard'
+    github.com/issues: 'true'
+    github.com/pull-requests: 'true'
+  tags:
+    - dashboard
+    - ui
+    - downstream
+spec:
+  type: website
+  lifecycle: production
+  owner: group:default/rhoai-team
+  system: rhoai-downstream
+  dependsOn:
+    - component:rhoai-operator
+
+---
+# OpenDataHub Operator (Upstream)
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: odh-operator
+  title: OpenDataHub Operator
+  description: |
+    Kubernetes operator that manages the lifecycle of OpenDataHub
+    components. The upstream operator that the RHOAI operator is based on.
+  annotations:
+    github.com/project-slug: 'opendatahub-io/opendatahub-operator'
+    github.com/issues: 'true'
+    github.com/pull-requests: 'true'
+  links:
+    - url: https://github.com/opendatahub-io
+      title: OpenDataHub GitHub
+      icon: github
+  tags:
+    - operator
+    - upstream
+    - kubernetes
+spec:
+  type: service
+  lifecycle: production
+  owner: group:default/odh-team
+  system: opendatahub-upstream
+
+---
+# OpenDataHub Dashboard (Upstream)
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: odh-dashboard
+  title: OpenDataHub Dashboard
+  description: |
+    Web-based dashboard providing unified access to OpenDataHub services
+    and tools. The upstream dashboard that the RHOAI dashboard is based on.
+  annotations:
+    # TODO: Replace with actual ODH dashboard repo URL
+    github.com/project-slug: 'opendatahub-io/odh-dashboard'
+    github.com/issues: 'true'
+    github.com/pull-requests: 'true'
+  links:
+    - url: https://opendatahub.io/
+      title: OpenDataHub Website
+      icon: web
+  tags:
+    - dashboard
+    - ui
+    - upstream
+spec:
+  type: website
+  lifecycle: production
+  owner: group:default/odh-team
+  system: opendatahub-upstream
+  dependsOn:
+    - component:odh-operator
