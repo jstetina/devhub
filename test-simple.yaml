@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: test-simple
+  title: Simple Test Component
+  description: Basic test component to verify import functionality
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:default/jstetina
