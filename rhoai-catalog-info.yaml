@@ -29,35 +29,95 @@ spec:
   owner: group:default/rhoai
 
 ---
-# RHOAI System (Downstream)
+# Codebase System - Contains all source code components
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: rhoai-downstream
-  title: Red Hat OpenShift AI (Downstream)
+  name: codebase
+  title: RHOAI Codebase
   description: |
-    Red Hat's supported, enterprise-ready AI/ML platform based on
-    OpenDataHub. Includes additional enterprise features, support,
-    and Red Hat branding.
+    All source code components for RHOAI and OpenDataHub platforms,
+    including both upstream (OpenDataHub) and downstream (RHOAI) codebases.
   tags:
-    - downstream
-    - enterprise
-    - supported
+    - codebase
+    - source-code
+    - development
 spec:
   owner: group:default/rhoai
   domain: rhoai
 
 ---
-# OpenDataHub System (Upstream)
+# Testing System - Contains all testing components  
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: opendatahub-upstream
-  title: OpenDataHub (Upstream)
+  name: testing
+  title: RHOAI Testing Infrastructure
   description: |
-    Open source AI/ML platform providing data science tools and
-    workflows on OpenShift and Kubernetes. The upstream project
-    that RHOAI is based on.
+    Testing infrastructure and frameworks for RHOAI and OpenDataHub
+    including CI/CD pipelines, test suites, and quality assurance tools.
+  tags:
+    - testing
+    - ci-cd
+    - qa
+    - quality-assurance
+spec:
+  owner: group:default/rhoai
+  domain: rhoai
+
+---
+# Documentation System - Contains all documentation
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: docs
+  title: RHOAI Documentation
+  description: |
+    Documentation ecosystem for RHOAI and OpenDataHub including
+    user guides, API documentation, and developer resources.
+  tags:
+    - documentation
+    - guides
+    - api-docs
+    - knowledge-base
+spec:
+  owner: group:default/rhoai
+  domain: rhoai
+
+---
+# Codebase Components - Top Level Groupings
+# Downstream Codebase Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: downstream-codebase
+  title: RHOAI Downstream Codebase
+  description: |
+    Red Hat's supported, enterprise-ready AI/ML platform codebase.
+    Contains all downstream RHOAI components including operators,
+    dashboards, and enterprise features.
+  tags:
+    - codebase
+    - downstream
+    - enterprise
+    - grouping
+spec:
+  type: library
+  lifecycle: production
+  owner: group:default/rhoai
+  system: codebase
+
+---
+# Upstream Codebase Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: upstream-codebase
+  title: OpenDataHub Upstream Codebase
+  description: |
+    Open source AI/ML platform codebase providing data science tools and
+    workflows. Contains all upstream OpenDataHub components that RHOAI
+    is based on.
   links:
     - url: https://opendatahub.io/
       title: OpenDataHub Website
@@ -66,15 +126,18 @@ metadata:
       title: OpenDataHub GitHub Organization
       icon: github
   tags:
+    - codebase
     - upstream
     - open-source
-    - community
+    - grouping
 spec:
+  type: library
+  lifecycle: production
   owner: group:default/rhoai
-  domain: rhoai
+  system: codebase
 
 ---
-# RHOAI Components (Downstream)
+# RHOAI Components (Part of Downstream Codebase)
 # RHOAI Operator
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -89,6 +152,7 @@ metadata:
     github.com/project-slug: 'red-hat-data-services/rhods-operator'
     github.com/issues: 'true'
     github.com/pull-requests: 'true'
+    backstage.io/part-of: downstream-codebase
   tags:
     - operator
     - downstream
@@ -97,7 +161,7 @@ spec:
   type: service
   lifecycle: production
   owner: group:default/rhoai
-  system: rhoai-downstream
+  system: codebase
 
 ---
 # RHOAI Dashboard
@@ -114,6 +178,7 @@ metadata:
     github.com/project-slug: 'red-hat-data-services/odh-dashboard'
     github.com/issues: 'true'
     github.com/pull-requests: 'true'
+    backstage.io/part-of: downstream-codebase
   tags:
     - dashboard
     - ui
@@ -122,10 +187,12 @@ spec:
   type: website
   lifecycle: production
   owner: group:default/rhoai
-  system: rhoai-downstream
+  system: codebase
+  dependsOn:
+    - component:rhoai-operator
 
 ---
-# OpenDataHub Components (Upstream)  
+# OpenDataHub Components (Part of Upstream Codebase)
 # ODH Operator
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -139,6 +206,7 @@ metadata:
     github.com/project-slug: 'opendatahub-io/opendatahub-operator'
     github.com/issues: 'true'
     github.com/pull-requests: 'true'
+    backstage.io/part-of: upstream-codebase
   links:
     - url: https://github.com/opendatahub-io
       title: OpenDataHub GitHub
@@ -151,7 +219,7 @@ spec:
   type: service
   lifecycle: production
   owner: group:default/rhoai
-  system: opendatahub-upstream
+  system: codebase
 
 ---
 # ODH Dashboard
@@ -167,6 +235,7 @@ metadata:
     github.com/project-slug: 'opendatahub-io/odh-dashboard'
     github.com/issues: 'true'
     github.com/pull-requests: 'true'
+    backstage.io/part-of: upstream-codebase
   links:
     - url: https://opendatahub.io/
       title: OpenDataHub Website
@@ -179,4 +248,56 @@ spec:
   type: website
   lifecycle: production
   owner: group:default/rhoai
-  system: opendatahub-upstream
+  system: codebase
+  dependsOn:
+    - component:odh-operator
+
+---
+# Testing System Components
+# Test Suite Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: test-suite
+  title: RHOAI Test Suite
+  description: |
+    Comprehensive test suite covering unit tests, integration tests,
+    and end-to-end testing for RHOAI and OpenDataHub components.
+  annotations:
+    github.com/project-slug: 'PLACEHOLDER/rhoai-test-suite'
+    github.com/issues: 'true'
+    github.com/pull-requests: 'true'
+  tags:
+    - testing
+    - qa
+    - automation
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:default/rhoai
+  system: testing
+
+---
+# Documentation System Components  
+# Documentation Site
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: docs-site
+  title: RHOAI Documentation Site
+  description: |
+    Main documentation website containing user guides, tutorials,
+    API references, and developer documentation for RHOAI and OpenDataHub.
+  annotations:
+    github.com/project-slug: 'PLACEHOLDER/rhoai-docs'
+    github.com/issues: 'true'
+    github.com/pull-requests: 'true'
+  tags:
+    - documentation
+    - website
+    - guides
+spec:
+  type: website
+  lifecycle: production
+  owner: group:default/rhoai
+  system: docs
