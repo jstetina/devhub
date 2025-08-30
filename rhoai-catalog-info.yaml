@@ -152,7 +152,6 @@ metadata:
     github.com/project-slug: 'red-hat-data-services/rhods-operator'
     github.com/issues: 'true'
     github.com/pull-requests: 'true'
-    backstage.io/part-of: downstream-codebase
   tags:
     - operator
     - downstream
@@ -162,6 +161,8 @@ spec:
   lifecycle: production
   owner: group:default/rhoai
   system: codebase
+  dependsOn:
+    - component:downstream-codebase
 
 ---
 # RHOAI Dashboard
@@ -178,7 +179,6 @@ metadata:
     github.com/project-slug: 'red-hat-data-services/odh-dashboard'
     github.com/issues: 'true'
     github.com/pull-requests: 'true'
-    backstage.io/part-of: downstream-codebase
   tags:
     - dashboard
     - ui
@@ -189,6 +189,7 @@ spec:
   owner: group:default/rhoai
   system: codebase
   dependsOn:
+    - component:downstream-codebase
     - component:rhoai-operator
 
 ---
@@ -206,7 +207,6 @@ metadata:
     github.com/project-slug: 'opendatahub-io/opendatahub-operator'
     github.com/issues: 'true'
     github.com/pull-requests: 'true'
-    backstage.io/part-of: upstream-codebase
   links:
     - url: https://github.com/opendatahub-io
       title: OpenDataHub GitHub
@@ -220,6 +220,8 @@ spec:
   lifecycle: production
   owner: group:default/rhoai
   system: codebase
+  dependsOn:
+    - component:upstream-codebase
 
 ---
 # ODH Dashboard
@@ -235,7 +237,6 @@ metadata:
     github.com/project-slug: 'opendatahub-io/odh-dashboard'
     github.com/issues: 'true'
     github.com/pull-requests: 'true'
-    backstage.io/part-of: upstream-codebase
   links:
     - url: https://opendatahub.io/
       title: OpenDataHub Website
@@ -250,6 +251,7 @@ spec:
   owner: group:default/rhoai
   system: codebase
   dependsOn:
+    - component:upstream-codebase
     - component:odh-operator
 
 ---
