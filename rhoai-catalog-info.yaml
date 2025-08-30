@@ -47,53 +47,6 @@ spec:
   domain: rhoai
 
 ---
-# RHOAI Components System - Contains downstream RHOAI components
-apiVersion: backstage.io/v1alpha1
-kind: System
-metadata:
-  name: rhoai-components
-  title: RHOAI Components (Downstream)
-  description: |
-    Red Hat OpenShift AI components including operators, dashboards,
-    and services. These are the downstream enterprise components
-    based on the upstream OpenDataHub codebase.
-  tags:
-    - rhoai
-    - downstream
-    - components
-    - enterprise
-spec:
-  owner: group:default/rhoai
-  domain: rhoai
-
----
-# OpenDataHub Components System - Contains upstream ODH components  
-apiVersion: backstage.io/v1alpha1
-kind: System
-metadata:
-  name: odh-components
-  title: OpenDataHub Components (Upstream)
-  description: |
-    Open source OpenDataHub components including operators, dashboards,
-    and services. These are the upstream open-source components that
-    RHOAI is based on.
-  links:
-    - url: https://opendatahub.io/
-      title: OpenDataHub Website
-      icon: web
-    - url: https://github.com/opendatahub-io
-      title: OpenDataHub GitHub Organization
-      icon: github
-  tags:
-    - odh
-    - upstream
-    - components
-    - open-source
-spec:
-  owner: group:default/rhoai
-  domain: rhoai
-
----
 # Testing System - Contains all testing components  
 apiVersion: backstage.io/v1alpha1
 kind: System
